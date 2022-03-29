@@ -15,12 +15,8 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Pull Request
-        run: gh pr create -B main --title "Release-v13" --body "Yay release"
-		env:
+      - name: Pull Request for every new push
+        run: gh pr create -B main --title "Release-v${new}" --body "Yay release"
+	env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
