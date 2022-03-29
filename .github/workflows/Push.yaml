@@ -20,7 +20,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Pull Request
-        run: gh pr create -B main --title "Release-v${new}" --body "Yay release"
+        run: gh pr create -B main --title "Release-v13" --body "Yay release"
 		env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
