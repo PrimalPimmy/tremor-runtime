@@ -6,14 +6,14 @@ on:
       - main
     types:
       - closed
-      - labeled 
+      - labeled
 jobs:
   release:
     name: Publish new release
     runs-on: ubuntu-latest
     if: |
-      github.event.pull_request.merged == true &&
-      ${{ github.event.label.name == 'Release' }}
+      ${{ github.event.pull_request.merged == true &&
+      github.event.label.name == 'Release' }}
     steps:
       - name: Extract version from branch name (for release branches)
         if: startsWith(github.event.pull_request.head.ref, 'release/')
@@ -33,5 +33,5 @@ jobs:
           git pull
           git tag -a -m"Release v${new}" "v${new}"
           git push --tags
-        env: 
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
