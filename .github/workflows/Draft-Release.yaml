@@ -40,6 +40,6 @@ jobs:
         run: git push origin release/${{ github.event.inputs.version }}
 
       - name: Create pull request
-        run: gh pr create -B main --title "Release-v${{ github.event.inputs.version }}" --body "Yay release"
+        run: gh pr create -B main --title "Release-v${{ github.event.inputs.version }}" --body "Yay release" --label "Release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
