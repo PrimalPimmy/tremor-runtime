@@ -27,11 +27,15 @@ jobs:
           BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
           VERSION=${BRANCH_NAME#hotfix/}
           echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
-      - name: Generate tags
-        run: |
-          git checkout main
-          git pull
-          git tag -a -m"Release v${new}" "v${new}"
-          git push --tags
+      - name: Create tag
+        uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/v${{ env.RELEASE_VERSION }}',
+              sha: context.sha
+            })
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
