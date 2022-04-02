@@ -3,11 +3,13 @@ name: "Draft new release"
 on:
   workflow_dispatch:
     inputs:
-      new-version:
-        description: "The new version you want to release."
-        required: true
       old-version:
-        description: "The current version that you want to upgrade."
+        description: "Old version"
+        required: true
+      new-version:
+        description: "New version"
+        required: true
+
 jobs:
   draft-new-release:
     name: "Draft a new release"
