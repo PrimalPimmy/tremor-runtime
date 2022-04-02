@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged && contains( github.event.pull_request.labels.*.name, 'Release')
     steps:
-        uses: actions/checkout@v2
       - name: Extract version from branch name (for release branches)
         if: startsWith(github.event.pull_request.head.ref, 'release/')
         run: |
