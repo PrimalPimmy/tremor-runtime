@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## github.event.inputs.new-version
 
 ### New featues
 
