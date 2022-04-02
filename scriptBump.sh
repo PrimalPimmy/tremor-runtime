@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 TOML_FILES="\
 Cargo.toml \
 tremor-api/Cargo.toml \
