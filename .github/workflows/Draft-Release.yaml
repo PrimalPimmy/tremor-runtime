@@ -21,7 +21,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
       - name: Create release branch
         run: git checkout -b release/${{ github.event.inputs.new-version }}
-        if:github.ref == 'refs/heads/release'
+        if: github.ref == 'refs/heads/release'
         name: Create hotfix branch
         run:  git checkout -b hotfix/${{ github.event.inputs.new-version }}
       - name: Initialize mandatory git config
