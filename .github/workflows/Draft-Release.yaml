@@ -39,15 +39,16 @@ jobs:
         run: gh pr create -B main --title "Release-v${{ github.event.inputs.new-version }}" --body "Yay release" --label "Release"
       - name: Trigger www docs workflow
         uses: actions/github-script@v6
-        run: |
-          await github.rest.actions.createWorkflowDispatch({
-          owner: PrimalPimmy,
-          repo: tremor-www-docs,
-          workflow_id: 'workflows/main.yml',
-          ref: 'main',
-          inputs {
-          new-version: 'v${{ env.RELEASE_VERSION }}',
-          },
-          });
+        with:
+          script: |
+              await github.rest.actions.createWorkflowDispatch({
+                owner: PrimalPimmy,
+                repo: tremor-www-docs,
+                workflow_id: 'workflows/main.yml',
+                ref: 'main',
+                inputs {
+                new-version: 'v${{ env.RELEASE_VERSION }}',
+                },
+                });
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
