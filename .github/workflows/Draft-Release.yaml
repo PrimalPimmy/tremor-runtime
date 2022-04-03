@@ -52,5 +52,4 @@ jobs:
                   newversion: 'v${{ github.event.inputs.new-version }}',
                 },
                 });
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          github-token: ${{ secrets.PAT_TOKEN }}
