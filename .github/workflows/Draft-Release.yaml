@@ -50,7 +50,7 @@ jobs:
                 ref: 'main',
                 inputs {
                 new-version: 'v${{ env.RELEASE_VERSION }}',
-                },
+                }
                 });
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
