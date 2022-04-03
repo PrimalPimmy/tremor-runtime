@@ -47,4 +47,4 @@ jobs:
           prerelease: false
           body: ${{ steps.extract-release-notes.outputs.release_notes }}
         env:
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
