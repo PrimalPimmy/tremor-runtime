@@ -46,7 +46,7 @@ jobs:
                await github.rest.actions.createWorkflowDispatch({
                 owner: 'PrimalPimmy',
                 repo: 'tremor-www-docs',
-                workflow_id: 'workflows/main.yml',
+                workflow_id: 'main.yml',
                 ref: 'main',
                 inputs: {
                   newversion: 'v${{ github.event.inputs.new-version }}',
