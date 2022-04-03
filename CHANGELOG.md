@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.67
 
 ### New featues
 
