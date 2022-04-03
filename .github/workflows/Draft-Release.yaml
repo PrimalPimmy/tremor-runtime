@@ -45,12 +45,12 @@ jobs:
           script: |
                await github.rest.actions.createWorkflowDispatch({
                 owner: 'PrimalPimmy',
-                repo: 'tremor-www-docs',
+                repo: "tremor-www-docs",
                 workflow_id: 'workflows/main.yml',
                 ref: 'main',
                 inputs: {
-                  new-version: 'v${{ env.RELEASE_VERSION }}'
-                }
+                  new-version: 'v${{ env.RELEASE_VERSION }}',
+                },
                 });
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
