@@ -34,6 +34,6 @@ jobs:
       - name: Pushing tags
         run: |
           git tag -a -m "Release v${{ env.RELEASE_VERSION }}" "v${{ env.RELEASE_VERSION }}"
-          git push origin ${{ env.RELEASE_VERSION }}
+          git push origin v${{ env.RELEASE_VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
