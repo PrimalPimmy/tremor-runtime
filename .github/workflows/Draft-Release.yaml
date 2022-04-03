@@ -41,6 +41,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Trigger www docs workflow
         uses: actions/github-script@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         with:
           script: |
                await github.rest.actions.createWorkflowDispatch({
@@ -49,8 +51,6 @@ jobs:
                 workflow_id: 'workflows/main.yml',
                 ref: 'main',
                 inputs: {
-                  newversion: 'v${{ env.RELEASE_VERSION }}',
+                  newversion: 'v${{ github.event.inputs.new-version }}',
                 },
                 });
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
