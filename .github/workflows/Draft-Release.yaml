@@ -44,5 +44,5 @@ jobs:
         with:
           workflow: main.yml
           repo: PrimalPimmy/tremor-www-docs
-          token: ${{ secrets.PERSONAL_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}
           inputs: '{ "newversion": "v${{ github.event.inputs.new-version }}"}'
