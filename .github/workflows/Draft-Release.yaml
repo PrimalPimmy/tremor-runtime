@@ -42,7 +42,7 @@ jobs:
       - name: Invoke workflow in another repo with inputs
         uses: benc-uk/workflow-dispatch@v1
         with:
-          workflow: main.yml
+          workflow: Draft new release
           repo: PrimalPimmy/tremor-www-docs
           token: ${{ secrets.PAT_TOKEN }}
           inputs: '{ "newversion": "v${{ github.event.inputs.new-version }}"}'
