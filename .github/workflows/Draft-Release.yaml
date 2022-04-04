@@ -45,4 +45,4 @@ jobs:
           workflow: Draft new release
           repo: PrimalPimmy/tremor-www-docs
           token: ${{ secrets.PAT_TOKEN }}
-          inputs: '{ "newversion": "v${{ github.event.inputs.new-version }}"}'
+          inputs: '{ "new_version": "v${{ github.event.inputs.new-version }}"}'
