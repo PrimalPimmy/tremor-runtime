@@ -32,13 +32,13 @@ jobs:
 
           git commit -sa -m "Prepare release ${{ github.event.inputs.new-version }}"
           echo "::set-output name=commit::$(git rev-parse HEAD)"
-      # - name: Push new branch
-      #   run: git push origin release/${{ github.event.inputs.new-version }}
+      - name: Push new branch
+        run: git push origin release/${{ github.event.inputs.new-version }}
 
-      # - name: Create pull request
-      #   run: gh pr create -B main --title "Release-v${{ github.event.inputs.new-version }}" --body "Yay release" --label "Release"
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create pull request
+        run: gh pr create -B main --title "Release-v${{ github.event.inputs.new-version }}" --body "Yay release" --label "Release"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Invoke workflow in another repo with inputs
         uses: benc-uk/workflow-dispatch@v1
         with:
