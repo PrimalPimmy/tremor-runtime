@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## Unreleased
 
 ### New featues
 
@@ -78,7 +78,7 @@
 
 - changed naming for `record` object to avoid keywords like `select` and `merge`. New names are `record.extract` and `record.combine`.
 
-## [0.11.4]
+## 0.11.4
 - Update to clap 3, this forced some breaking changes:
   - `tremor server run -f file1 file2` now is `tremor server run file1 file2`
   - `tremor test -i i1 i2 -e e1 e2` is now `tremor test -i i1 -i i2 -e e1 -e e2`
