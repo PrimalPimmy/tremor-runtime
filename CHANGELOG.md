@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.12.0-rc.1]
+## [0.13.0]
 
 ### New featues
 
