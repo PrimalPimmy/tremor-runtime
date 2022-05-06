@@ -32,7 +32,6 @@ jobs:
         with:
           crate: cargo-edit
           version: latest
-          use-tool-cache: true
       - name: Extracting version from input
         run: |
           VERSION=$(echo "${{github.event.inputs.new-version}}" | sed 's/ (.*)$//')
