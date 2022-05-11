@@ -21,8 +21,8 @@ jobs:
           args: --no-verify
           dry-run: true
 
-  publish-tremor-values:
-    name: Publish tremor common
+  publish-tremor-value:
+    name: Publish tremor value
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -37,4 +37,22 @@ jobs:
         with:
           path: './tremor-value'
           args: --no-verify
-          dry-run: true 
+          dry-run: true
+
+  publish-tremor-influx:
+    name: Publish tremor influx
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+      - name: Publish tremor-value to crates.io
+        uses: katyo/publish-crates@v1
+        with:
+          path: './tremor-value'
+          args: --no-verify
+          dry-run: true
