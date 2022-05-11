@@ -17,9 +17,9 @@ jobs:
       - name: Publish tremor-common to crates.io
         uses: katyo/publish-crates@v1
         with:
-        path: './tremor-common'
-        args: --no-verify
-        dry-run: true
+          path: './tremor-common'
+          args: --no-verify
+          dry-run: true
 
   publish-tremor-values:
     name: Publish tremor common
@@ -28,6 +28,6 @@ jobs:
       - name: Publish tremor-value to crates.io
         uses: katyo/publish-crates@v1
         with:
-        path: './tremor-value'
-        args: --no-verify
-        dry-run: true 
+          path: './tremor-value'
+          args: --no-verify
+          dry-run: true 
