@@ -25,9 +25,17 @@ jobs:
     name: Publish tremor common
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
       - name: Publish tremor-value to crates.io
         uses: katyo/publish-crates@v1
         with:
           path: './tremor-value'
           args: --no-verify
           dry-run: true 
+
