@@ -42,8 +42,9 @@ jobs:
           prerelease: true
           body: ${{ steps.extract-release-notes.outputs.release_notes }}
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}   
       - name: Create release
+        if: ${{ env.VER }} != 'rc'
         uses: actions/create-release@v1
         with:
           tag_name: v${{ env.RELEASE_VERSION }}
