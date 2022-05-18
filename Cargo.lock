@@ -5775,7 +5775,7 @@ checksum = "efd1f82c56340fdf16f2a953d7bda4f8fdffba13d93b00844c25572110b26079"
 
 [[package]]
 name = "tremor-api"
-version = "0.12.0-rc.8"
+version = "0.12.0-rc.9"
 dependencies = [
  "async-std",
  "env_logger 0.9.0",
@@ -5797,7 +5797,7 @@ dependencies = [
 
 [[package]]
 name = "tremor-cli"
-version = "0.12.0-rc.8"
+version = "0.12.0-rc.9"
 dependencies = [
  "anyhow",
  "async-std",
@@ -5841,7 +5841,7 @@ dependencies = [
 
 [[package]]
 name = "tremor-common"
-version = "0.12.0-rc.8"
+version = "0.12.0-rc.9"
 dependencies = [
  "async-std",
  "beef",
@@ -5853,7 +5853,7 @@ dependencies = [
 
 [[package]]
 name = "tremor-influx"
-version = "0.12.0-rc.8"
+version = "0.12.0-rc.9"
 dependencies = [
  "criterion",
  "lexical",
@@ -5887,7 +5887,7 @@ dependencies = [
 
 [[package]]
 name = "tremor-pipeline"
-version = "0.12.0-rc.8"
+version = "0.12.0-rc.9"
 dependencies = [
  "async-broadcast",
  "async-std",
@@ -5922,7 +5922,7 @@ dependencies = [
 
 [[package]]
 name = "tremor-runtime"
-version = "0.12.0-rc.8"
+version = "0.12.0-rc.9"
 dependencies = [
  "anyhow",
  "async-broadcast",
@@ -6025,7 +6025,7 @@ dependencies = [
 
 [[package]]
 name = "tremor-script"
-version = "0.12.0-rc.8"
+version = "0.12.0-rc.9"
 dependencies = [
  "atty",
  "base64 0.13.0",
@@ -6077,7 +6077,7 @@ dependencies = [
 
 [[package]]
 name = "tremor-value"
-version = "0.12.0-rc.8"
+version = "0.12.0-rc.9"
 dependencies = [
  "base64 0.13.0",
  "beef",
