@@ -10,9 +10,17 @@ on:
         - major (_.X.X)
         - minor (X._.X)
         - patch (X.X._)
-        - rc (X.X.X-rc)
+        - rc (X.X.X-rc-_)
         - release (removes rc)
-        required: true
+
+      rc:
+        type: choice
+        description: "Which release candidate version you'd like to release? (Note: This is only for initiating a rc from a main version)"
+        options:
+        - rc [major] (_.X.X-rc)
+        - rc [minor] (X._.X-rc)
+        - rc [patch] (X.X._-rc)
+        
 
 jobs:
   draft-new-release:
@@ -22,43 +30,73 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
           toolchain: stable
+
       - uses: Swatinem/rust-cache@v1
+
       - name: Install cargo-edit
         uses: actions-rs/install@v0.1
         with:
           crate: cargo-edit
           version: latest
+      # IF INPUT IS FOR MAIN RELEASE OR BUMPING CURRENT RC
       - name: Extracting version from input
+        if: "${{ github.event.inputs.rc == '' }}"
         run: |
           VERSION=$(echo "${{github.event.inputs.new-version}}" | sed 's/ (.*)$//')
           echo "VER=$VERSION" >> $GITHUB_ENV
+
       - name: Bump new version in TOML files
+        if: "${{ github.event.inputs.rc == '' }}"
         run: |
           OLD_VERSION=$(cargo pkgid | cut -d# -f2 | cut -d: -f2)
           echo "OLD=$OLD_VERSION" >> $GITHUB_ENV
           cargo set-version --workspace --bump ${{ env.VER }}
           NEW_VERSION=$(cargo pkgid | cut -d# -f2 | cut -d: -f2)
-          echo "NEW=$NEW_VERSION" >> $GITHUB_ENV   
+          echo "NEW=$NEW_VERSION" >> $GITHUB_ENV 
+
+        # IF INPUT IS FOR RC
+      - name: Extracting version from input (RC)  
+         if: "${{ github.event.inputs.new-version == '' }}"
+        run: |
+          RCandidate=$(echo "${{github.event.inputs.rc}}" | sed 's/ .*(.*)$//')
+          echo "RC=$RCandidate" >> $GITHUB_ENV
+          VERSION=$(echo "${{github.event.inputs.rc}}" | sed 's/rc \(.*\) (.*)$/\1/'
+          echo "VER=$VERSION" >> $GITHUB_ENV
+      
+      - name: Bump new version in TOML files (RC)
+        if: "${{ github.event.inputs.new-version == '' }}"
+        run: |
+          OLD_VERSION=$(cargo pkgid | cut -d# -f2 | cut -d: -f2)
+          echo "OLD=$OLD_VERSION" >> $GITHUB_ENV
+          cargo set-version --workspace --bump ${{ env.VER }}
+          NEW_VERSION=$(cargo pkgid | cut -d# -f2 | cut -d: -f2)
+          echo "NEW=$NEW_VERSION" >> $GITHUB_ENV 
+
       - name: Create release branch
         run: |
           git checkout -b release/${{ env.NEW }}
+
       - name: Initialize mandatory git config
         run: |
           git config user.name "GitHub actions"
           git config user.email noreply@github.com
+
       - name: Updating Changelog and Dockerfile
         run: .github/scripts/Bump.sh ${{ env.OLD }} ${{ env.NEW }}
+
       - run: cargo check
+
       - name: Commit changelog and manifest files
         id: make-commit
         run: |
-
           git commit -sa -m "Prepare release ${{ env.NEW }}"
           echo "::set-output name=commit::$(git rev-parse HEAD)"
+
       - name: Push new branch
         run: git push origin release/${{ env.NEW }}
 
